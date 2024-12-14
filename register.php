@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insert_query = "INSERT INTO users (username, password, role) VALUES ('$username', '$hashed_password', '$role')";
 
             if (mysqli_query($conn, $insert_query)) {
-                $success = "Pendaftaran berhasil! Silakan login.";
+                session_start();
+                $_SESSION['success'] = "Pendaftaran berhasil! Silakan login.";
                 header('Location: login.php');
                 exit();
             } else {
